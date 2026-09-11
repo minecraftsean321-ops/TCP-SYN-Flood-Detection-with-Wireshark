@@ -39,7 +39,7 @@ Definition: adalah tipe serangan denial-of-service yang membuat server kewalahan
 tcp.flags.syn == 1 and tcp.flags.ack == 0
 `  
 
-   <img width="960" height="540" alt="Screenshot 2026-09-12 061452" src="https://github.com/user-attachments/assets/ea7b0b50-a637-4f94-ac5f-52a3c89912ba" />
+  <img width="960" height="540" alt="Screenshot 2026-09-12 061452" src="https://github.com/user-attachments/assets/ea7b0b50-a637-4f94-ac5f-52a3c89912ba" />
 
 - Menggunakan filter berikut untuk melihat SYN/ACK:
 
@@ -141,3 +141,7 @@ Membatasi jumlah paket SYN yang dapat diterima per alamat IP atau per antarmuka 
 - SYN Proxy (Firewall): Firewall berdiri di depan server dan mencegat semua paket SYN. Firewall yang menjawab SYN/ACK dan menyelesaikan three-way handshake dengan klien terlebih dahulu. Jika klien terbukti valid, barulah firewall membuka koneksi ke server asli.
 
 - Cloud Reverse Proxy (Cloudflare, AWS Shield): Menyalurkan seluruh trafik melalui infrastruktur pembersih (scrubbing center) berskala raksasa sebelum diteruskan ke server utama.
+
+# Refrensi 
+- https://www.firewall.cx/tools-tips-reviews/network-protocol-analyzers/performing-tcp-syn-flood-attack-and-detecting-it-with-wireshark.html
+- https://share.gemini.google/jMpJ8FbpDOvN
