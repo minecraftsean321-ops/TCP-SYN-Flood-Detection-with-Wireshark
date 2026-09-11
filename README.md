@@ -94,3 +94,50 @@ Jika penyerang menggunakan teknik IP Spoofing (memalsukan IP sumber):
 
 - Memerlukan Mitigasi Tingkat Lanjut: Pengelola jaringan terpaksa harus menerapkan solusi yang lebih kompleks seperti SYN Cookies, Rate Limiting berbasis perilaku (behavioral analysis), atau proteksi DDoS dedicated di layer border/cloud.
 
+# Refleksi dan perlindungan 
+
+## Dampak dan Deteksi SYN Flood 
+
+1. Dampak pada Jaringan
+SYN Flood bekerja dengan memanfaatkan siklus three-way handshake pada protokol TCP. Ketika penyerang mengirim ribuan paket SYN tanpa pernah menyelesaikan handshake (mengirim ACK akhir), server terpaksa mengalokasikan memori untuk menyimpan status koneksi setengah terbuka (half-open connection).
+
+- Server Exhaustion: Memori dan antrean koneksi (syn-queue) milik target akan cepat habis.
+
+- Denial of Service (DoS): Pengguna sah (legitimate users) tidak lagi bisa terhubung ke layanan karena server menolak permintaan koneksi baru.
+
+- Network Degradation: Beban lalu lintas data yang tinggi dapat memperlambat kinerja router, firewall, dan bandwidth jaringan secara keseluruhan.
+
+2. Cara Deteksi
+- Monitoring Grafis & Trafik (Wireshark/Ntopng): Terjadinya lonjakan drastis pada jumlah paket SYN tanpa diimbangi rasio paket ACK yang sepadan.
+
+- Analisis Koneksi Aktif (netstat / ss): Terlihat sangat banyak koneksi dengan status SYN_RECV pada server.
+
+- Ambang Batas Waktu Real-time (IDS/IPS): Snort atau Suricata dapat mendeteksi jumlah paket SYN berlebih yang melampaui ambang batas (threshold) normal dalam interval detik tertentu.
+
+## Teknik Mitigasi Umum 
+
+` 
+[ Attacker SYN ] ──► [ Firewall / Proxy ] ──► ( Filter / Challenge ) ──► [ Web Server ]
+`
+
+1. SYN Cookies
+Teknik ini mengubah cara server menangani syn-queue. Daripada menyimpan data koneksi di memori saat menerima SYN, server langsung membalas dengan paket SYN/ACK yang berisi nomor urut khusus (sequence number terenkripsi yang berfungsi sebagai cookie).
+
+- Keunggulan: Server tidak perlu mengalokasikan buffer memori sama sekali sebelum pengguna nyata membalas dengan paket ACK yang valid.
+
+- Catatan: Menghemat penggunaan memori secara signifikan saat serangan terjadi.
+
+2. Backlog Tuning
+Meningkatkan kapasitas antrean koneksi (syn-queue backlog) dan memperpendek batas waktu (timeout) untuk koneksi yang belum selesai.
+
+- Cara kerja: Di Linux, parameter kernel seperti net.ipv4.tcp_max_syn_backlog diperbesar nilainya, dan net.ipv4.tcp_synack_retries dikurangi agar server lebih cepat menghapus koneksi menggantung yang tidak responsif.
+
+3. Filtering & Rate Limiting
+Membatasi jumlah paket SYN yang dapat diterima per alamat IP atau per antarmuka jaringan dalam kurun waktu tertentu.
+
+- Aplikasi: Menggunakan aturan pada iptables / nftables (misal: modul hashlimit) untuk melakukan drop pada lalu lintas SYN yang terlampau pesat dari satu sumber.
+
+4. Firewall & Reverse Proxy (DDoS Protection)
+- SYN Proxy (Firewall): Firewall berdiri di depan server dan mencegat semua paket SYN. Firewall yang menjawab SYN/ACK dan menyelesaikan three-way handshake dengan klien terlebih dahulu. Jika klien terbukti valid, barulah firewall membuka koneksi ke server asli.
+
+- Cloud Reverse Proxy (Cloudflare, AWS Shield): Menyalurkan seluruh trafik melalui infrastruktur pembersih (scrubbing center) berskala raksasa sebelum diteruskan ke server utama.
