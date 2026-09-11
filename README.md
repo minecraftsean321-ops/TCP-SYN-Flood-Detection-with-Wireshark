@@ -49,6 +49,20 @@ tcp.flags.syn == 1 and tcp.flags.ack == 0
 
   <img width="960" height="540" alt="Screenshot 2026-09-12 061510" src="https://github.com/user-attachments/assets/9f6b4223-700d-4b80-b06f-ace7ba6583b9" />
 
+- Melihat spike grafik dengan I/O graph
+  
+  <img width="640" height="502" alt="Screenshot 2026-09-12 061545" src="https://github.com/user-attachments/assets/fd5cbb94-7e97-4c43-a26d-d68df0d57342" />
 
+- Membandingkan volume paket TCP menggunakan Protocol Hierarchy  
+
+<img width="597" height="406" alt="Screenshot 2026-09-12 061611" src="https://github.com/user-attachments/assets/b9d4ea88-f34d-4ed4-b3fc-1724fe46f5c1" />
+
+# Diskusi dan interpretasi 
+
+## Gejala SYN Flood berdasarkan hasil capture?
+
+## Mengapa jumlah SYN/ACK tetap sedikit meskipun jumlah SYN sangat banyak?
+
+## Apa dampak penggunaan IP spoofing terhadap proses deteksi dan mitigasi?
 
 
