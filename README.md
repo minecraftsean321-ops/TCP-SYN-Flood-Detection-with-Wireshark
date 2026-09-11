@@ -37,9 +37,9 @@ Definition: adalah tipe serangan denial-of-service yang membuat server kewalahan
 
 `    
 tcp.flags.syn == 1 and tcp.flags.ack == 0
-`
+`  
 
-<img width="960" height="540" alt="Screenshot 2026-09-12 061452" src="https://github.com/user-attachments/assets/ea7b0b50-a637-4f94-ac5f-52a3c89912ba" />
+   <img width="960" height="540" alt="Screenshot 2026-09-12 061452" src="https://github.com/user-attachments/assets/ea7b0b50-a637-4f94-ac5f-52a3c89912ba" />
 
 - Menggunakan filter berikut untuk melihat SYN/ACK:
 
@@ -55,7 +55,7 @@ tcp.flags.syn == 1 and tcp.flags.ack == 0
 
 - Membandingkan volume paket TCP menggunakan Protocol Hierarchy  
 
-<img width="597" height="406" alt="Screenshot 2026-09-12 061611" src="https://github.com/user-attachments/assets/b9d4ea88-f34d-4ed4-b3fc-1724fe46f5c1" />
+  <img width="597" height="406" alt="Screenshot 2026-09-12 061611" src="https://github.com/user-attachments/assets/b9d4ea88-f34d-4ed4-b3fc-1724fe46f5c1" />
 
 # Diskusi dan interpretasi 
 
