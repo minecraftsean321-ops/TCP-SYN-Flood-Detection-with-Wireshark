@@ -21,5 +21,30 @@ Definition: adalah tipe serangan denial-of-service yang membuat server kewalahan
 - Victim: Windows
 
 # Simulasi Serangan TCP SYN Flood
--Instalasi hping3
-<img width="1001" height="682" alt="image" src="https://github.com/user-attachments/assets/e1360708-4e48-40fc-9ab0-a14d3b805e38" />
+-Instalasi nmap
+<img width="479" height="133" alt="Screenshot 2026-09-12 060519" src="https://github.com/user-attachments/assets/dafe4879-be6d-4ff6-bdd0-7f707ed7e40c" />
+
+-Simulai serangan menggunakan nmap
+<img width="497" height="340" alt="Screenshot 2026-09-12 061353" src="https://github.com/user-attachments/assets/dea83edf-4f0f-4034-ae9c-1e9555f5731d" />
+
+# Analisis trafik dengan wireshark
+
+- Menggunakan filter untuk melihat SYN tanpa ACK
+
+`    
+tcp.flags.syn == 1 and tcp.flags.ack == 0
+`
+
+<img width="960" height="540" alt="Screenshot 2026-09-12 061452" src="https://github.com/user-attachments/assets/ea7b0b50-a637-4f94-ac5f-52a3c89912ba" />
+
+- Menggunakan filter berikut untuk melihat SYN/ACK:
+
+  `
+  tcp.flags.syn == 1 and tcp.flags.ack == 1
+  `
+
+  <img width="960" height="540" alt="Screenshot 2026-09-12 061510" src="https://github.com/user-attachments/assets/9f6b4223-700d-4b80-b06f-ace7ba6583b9" />
+
+
+
+
