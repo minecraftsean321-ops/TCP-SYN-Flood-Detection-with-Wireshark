@@ -17,14 +17,18 @@ Definition: adalah tipe serangan denial-of-service yang membuat server kewalahan
 
 # Setup Lingkungan Lab
 - Attacker: Kali linux
+  
   <img width="1318" height="874" alt="image" src="https://github.com/user-attachments/assets/e9a93641-7ff4-4627-bd7c-60f87893de10" />
-- Victim: Windows
+  
+- Victim: Windows  
 
 # Simulasi Serangan TCP SYN Flood
--Instalasi nmap
+-Instalasi nmap  
+
 <img width="479" height="133" alt="Screenshot 2026-09-12 060519" src="https://github.com/user-attachments/assets/dafe4879-be6d-4ff6-bdd0-7f707ed7e40c" />
 
--Simulai serangan menggunakan nmap
+-Simulai serangan menggunakan nmap  
+
 <img width="497" height="340" alt="Screenshot 2026-09-12 061353" src="https://github.com/user-attachments/assets/dea83edf-4f0f-4034-ae9c-1e9555f5731d" />
 
 # Analisis trafik dengan wireshark
